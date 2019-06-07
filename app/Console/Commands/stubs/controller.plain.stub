@@ -1,0 +1,35 @@
+<?php
+
+namespace DummyNamespace;
+
+use Illuminate\Http\Request;
+use DummyRootNamespaceHttp\Controllers\Controller;
+use Illuminate\Http\Resources\Json\Resource;
+
+/**
+ * DummyClass
+ */
+class DummyClass extends Controller
+{
+    /**
+    * Instantiate a new controller instance.
+    *
+    * @return void
+    */
+    public function __construct()
+    {
+        $this->middleware('auth:api');
+    }
+
+    /**
+     * Invoke single action controller.
+     *
+     * @return Resource
+     */
+    public function __invoke()
+    {
+        // TODO: Controller logic
+
+        return new Resource(/* object */);
+    }
+}

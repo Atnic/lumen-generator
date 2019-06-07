@@ -1,0 +1,26 @@
+<?php
+
+use Illuminate\Support\Facades\Route;
+use NamespacedDummyUserModel;
+
+class DummyClass extends TestCase
+{
+    /**
+     * Invoke single action controller.
+     *
+     * @return void
+     */
+    public function test()
+    {
+        if (!isset(app('router')->namedRoutes['dummy_route'])) { $this->expectNotToPerformAssertions(); return; }
+        $user = factory(User::class)->create();
+
+        $this->actingAs($user, 'api');
+        $response = $this->get(route('dummy_route'))->response;
+        if ($response->exception) {
+            $this->expectOutputString('');
+            $this->setOutputCallback(function () use($response) { return $response->exception; });
+        }
+        $this->assertResponseOk();
+    }
+}

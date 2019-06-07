@@ -1,0 +1,14 @@
+<?php
+
+namespace DummyNamespace;
+
+use NamespacedDummyUserModel;
+use NamespacedDummyModel;
+
+/**
+ * DummyModel Policy
+ */
+class DummyClass extends ModelPolicy
+{
+    
+}

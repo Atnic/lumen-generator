@@ -1,0 +1,13 @@
+<?php
+
+return [
+
+    'plural' => 'dummy_model_plural_variable',
+    'singular' => 'dummy_model_variable',
+
+    'name' => 'name',
+
+    //'parent' => 'parent',
+    //'children' => 'children',
+
+];

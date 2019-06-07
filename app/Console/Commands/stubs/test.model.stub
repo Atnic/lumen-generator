@@ -1,0 +1,120 @@
+<?php
+
+use DummyFullModelClass;
+use Illuminate\Support\Facades\Route;
+use NamespacedDummyUserModel;
+
+class DummyClass extends TestCase
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return void
+     */
+    public function testIndex()
+    {
+        if (!isset(app('router')->namedRoutes['dummy_route.index'])) { $this->expectNotToPerformAssertions(); return; }
+        $user = factory(User::class)->create();
+
+        $this->actingAs($user, 'api');
+
+        $dummy_model_plural_variable = factory(DummyModelClass::class, 5)->create();
+
+        $response = $this->get(dummy_action_index."?search=lorem")->response;
+        if ($response->exception) {
+            $this->expectOutputString('');
+            $this->setOutputCallback(function () use($response) { return $response->exception; });
+            return;
+        }
+        $this->assertResponseOk();
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @return void
+     */
+    public function testStore()
+    {
+        if (!isset(app('router')->namedRoutes['dummy_route.store'])) { $this->expectNotToPerformAssertions(); return; }
+        $user = factory(User::class)->create();
+
+        $this->actingAs($user, 'api');
+        $response = $this->post(dummy_action_store, factory(DummyModelClass::class)->make()->toArray())->response;
+        if ($response->exception) {
+            $this->expectOutputString('');
+            $this->setOutputCallback(function () use($response) { return $response->exception; });
+            return;
+        }
+        $this->assertResponseStatus(201);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @return void
+     */
+    public function testShow()
+    {
+        if (!isset(app('router')->namedRoutes['dummy_route.show'])) { $this->expectNotToPerformAssertions(); return; }
+        $user = factory(User::class)->create();
+
+        $this->actingAs($user, 'api');
+
+        $dummy_model_variable = factory(DummyModelClass::class)->create();
+
+        $response = $this->get(dummy_action_show)->response;
+        if ($response->exception) {
+            $this->expectOutputString('');
+            $this->setOutputCallback(function () use($response) { return $response->exception; });
+            return;
+        }
+        $this->assertResponseOk();
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @return void
+     */
+    public function testUpdate()
+    {
+        if (!isset(app('router')->namedRoutes['dummy_route.update'])) { $this->expectNotToPerformAssertions(); return; }
+        $user = factory(User::class)->create();
+
+        $this->actingAs($user, 'api');
+
+        $dummy_model_variable = factory(DummyModelClass::class)->create();
+
+        $response = $this->put(dummy_action_update, factory(DummyModelClass::class)->make()->toArray())->response;
+        if ($response->exception) {
+            $this->expectOutputString('');
+            $this->setOutputCallback(function () use($response) { return $response->exception; });
+            return;
+        }
+        $this->assertResponseOk();
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @return void
+     */
+    public function testDestroy()
+    {
+        if (!isset(app('router')->namedRoutes['dummy_route.destroy'])) { $this->expectNotToPerformAssertions(); return; }
+        $user = factory(User::class)->create();
+
+        $this->actingAs($user, 'api');
+
+        $dummy_model_variable = factory(DummyModelClass::class)->create();
+
+        $response = $this->delete(dummy_action_destroy)->response;
+        if ($response->exception) {
+            $this->expectOutputString('');
+            $this->setOutputCallback(function () use($response) { return $response->exception; });
+            return;
+        }
+        $this->assertResponseOk();
+    }
+}
