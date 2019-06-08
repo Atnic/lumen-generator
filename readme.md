@@ -1,14 +1,30 @@
 # Lumen Generator
 
+[![Latest Stable Version](https://poser.pugx.org/atnic/lumen-generator/v/stable)](https://packagist.org/packages/atnic/lumen-generator)
+[![Total Downloads](https://poser.pugx.org/atnic/lumen-generator/downloads)](https://packagist.org/packages/atnic/lumen-generator)
+[![Latest Unstable Version](https://poser.pugx.org/atnic/lumen-generator/v/unstable)](https://packagist.org/packages/atnic/lumen-generator)
+[![License](https://poser.pugx.org/atnic/lumen-generator/license)](https://packagist.org/packages/atnic/lumen-generator)
+[![Monthly Downloads](https://poser.pugx.org/atnic/lumen-generator/d/monthly)](https://packagist.org/packages/atnic/lumen-generator)
+[![Daily Downloads](https://poser.pugx.org/atnic/lumen-generator/d/daily)](https://packagist.org/packages/atnic/lumen-generator)
+
 ## Requirement
 - php: >=7.1.3,
 - [phpunit/phpunit](https://github.com/sebastianbergmann/phpunit): ^7.0
 
 ## Installation
-```bash
-composer require atnic/lumen-generator
+Edit `composer.json`
+```json
+{
+  "require": {
+    "atnic/lumen-generator": "^0.1"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^7.0"
+  }
+}
 ```
-Then do this initial steps:
+
+Then run `composer update`. After that do this initial steps:
 - [x] Setup your `.env` file.
 - [x] In `app/User.php`, add `api_token` in `$hidden` property.
 - [x] In `bootstrap/app.php`, uncomment and add some lines
